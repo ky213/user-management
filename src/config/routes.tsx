@@ -11,14 +11,14 @@ export const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       {
-        path: "/home",
+        path: "/",
         Component: HomePage,
-        // errorElement: <ErrorBoundary />,
+        errorElement: <ErrorBoundary />,
       },
       {
         path: "/dashboard",
         Component: Dashboard,
-        // errorElement: <ErrorBoundary />,
+        errorElement: <ErrorBoundary />,
       },
       {
         path: "*",
