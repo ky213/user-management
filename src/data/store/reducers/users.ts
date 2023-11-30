@@ -9,7 +9,7 @@ type IUsersState = {
 };
 
 const slice = createSlice({
-  name: "photos",
+  name: "users",
   initialState: { list: [] } as IUsersState,
   reducers: {},
   extraReducers: (builder) => {

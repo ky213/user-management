@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { ErrorBoundary } from "src/components";
-import { MainLayout } from "src/layouts";
+import { MainLayout, DashboardLayout } from "src/layouts";
 import { HomePage, Dashboard, NotFound } from "src/pages";
 
 export const router = createBrowserRouter([
@@ -17,8 +17,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        Component: Dashboard,
-        errorElement: <ErrorBoundary />,
+        Component: DashboardLayout,
+        children: [
+          {
+            path: "/dashboard/",
+            Component: Dashboard,
+            errorElement: <ErrorBoundary />,
+          },
+        ],
       },
       {
         path: "*",

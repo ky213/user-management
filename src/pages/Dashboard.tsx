@@ -1,39 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, Typography, Container, Stack, Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+
+import { IRootState } from "src/data/store";
+import { useGetUsersQuery } from "src/data/api";
+import { IPagination, IUser } from "src/data/types";
 
 export interface IDashboardProps {}
 
 const Dashboard = (props: IDashboardProps) => {
+  const [pagination, setPagination] = useState<IPagination>({ page: 0, pageSize: 10 });
   const gotTo = useNavigate();
+  const { isLoading } = useGetUsersQuery(pagination);
+
+  const users = useSelector((state: IRootState) => state.users.list);
+
+  const columns: GridColDef[] = [
+    {
+      field: "First Name",
+      valueGetter: (param: GridValueGetterParams<IUser>) => param.row?.name.first,
+    },
+    {
+      field: "Last Name",
+      valueGetter: (param: GridValueGetterParams<IUser>) => param.row?.name.last,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 300,
+    },
+    {
+      field: "phone",
+      headerName: "Phone",
+      width: 300,
+    },
+    {
+      field: "gender",
+      headerName: "Gender",
+    },
+    {
+      field: "nat",
+      headerName: "Nationality",
+    },
+  ];
+
+  const handlePaginate = ({ page, pageSize }: IPagination) => {
+    setPagination({ page: page + 1, pageSize });
+  };
 
   return (
-    <>
-      <Grid
-        container
-        justifyContent={"center"}
-        alignItems={"start"}
-        sx={{
-          backgroundImage: "url(https://source.unsplash.com/random?office)",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: (t) => (t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900]),
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100vw",
-          height: "100vh",
+    <Box mt={10}>
+      <DataGrid
+        getRowId={(row) => row.email}
+        rows={users}
+        columns={columns}
+        loading={isLoading}
+        pageSizeOptions={[10, 20, 50]}
+        // disableColumnMenu={true}
+        disableRowSelectionOnClick={true}
+        onPaginationModelChange={handlePaginate}
+        initialState={{
+          pagination: {
+            paginationModel: pagination,
+          },
         }}
-      >
-        <Grid item sx={{ mt: 22 }}>
-          <Container maxWidth="sm" sx={{ backgroundColor: "rgb(0,0,0, 0.3)", padding: 5 }}>
-            <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center" onClick={() => gotTo("/")}>
-              <Button variant="contained" color="success">
-                Wecome to dashboard
-              </Button>
-            </Stack>
-          </Container>
-        </Grid>
-      </Grid>
-    </>
+      />
+    </Box>
   );
 };
 

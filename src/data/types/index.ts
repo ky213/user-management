@@ -60,6 +60,7 @@ export interface IUser {
   phone: string;
   cell: string;
   nat: INationality;
+  id: IID;
 }
 
 export interface IAPIResult {
@@ -69,7 +70,10 @@ export interface IAPIResult {
   version: number;
 }
 
-export type IPagination = Omit<IAPIResult, "version">;
+export type IPagination = {
+  page: number;
+  pageSize: number;
+};
 
 export interface ILocation {
   street: {
