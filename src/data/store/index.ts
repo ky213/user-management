@@ -3,9 +3,11 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import type { PreloadedState } from "@reduxjs/toolkit";
 
 import { api } from "../api";
+import usersReducer from "./reducers/users";
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
+  users: usersReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<IRootState>) => {

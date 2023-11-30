@@ -62,14 +62,14 @@ export interface IUser {
   nat: INationality;
 }
 
-export interface IInfo {
+export interface IAPIResult {
   seed: string;
-  results: number;
+  results: IUser[];
   page: number;
   version: number;
 }
 
-export type IPagination = Omit<IInfo, "version">;
+export type IPagination = Omit<IAPIResult, "version">;
 
 export interface ILocation {
   street: {
