@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { ErrorBoundary } from "src/components";
 import { MainLayout, DashboardLayout } from "src/layouts";
-import { HomePage, Dashboard, NotFound } from "src/pages";
+import { HomePage, Dashboard, NotFound, UserProfile } from "src/pages";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +23,15 @@ export const router = createBrowserRouter([
             path: "/dashboard/",
             Component: Dashboard,
             errorElement: <ErrorBoundary />,
+          },
+          {
+            path: "/dashboard/user/:id",
+            Component: UserProfile,
+            errorElement: <ErrorBoundary />,
+          },
+          {
+            path: "*",
+            Component: NotFound,
           },
         ],
       },

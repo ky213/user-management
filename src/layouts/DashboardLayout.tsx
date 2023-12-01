@@ -15,8 +15,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
-const drawerWidth = 240;
-
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
   const goTo = useNavigate();
@@ -26,9 +24,9 @@ export default function DashboardLayout() {
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
+          width: 200,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: "border-box" },
+          [`& .MuiDrawer-paper`]: { width: 200, boxSizing: "border-box" },
         }}
         open={open}
       >
@@ -42,19 +40,16 @@ export default function DashboardLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
         </Toolbar>
         <Divider />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            <ListItem disablePadding onClick={() => goTo("/")}>
+            <ListItem disablePadding onClick={() => goTo("/dashboard")}>
               <ListItemButton>
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Home"} />
+                <ListItemText primary={"Dashboard"} />
               </ListItemButton>
             </ListItem>
           </List>

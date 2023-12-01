@@ -47,7 +47,18 @@ export type INationality =
   | "UA"
   | "US";
 
+export interface ILogin {
+  uuid: string;
+  username: string;
+  password: string;
+  salt: string;
+  md5: string;
+  sha1: string;
+  sha256: string;
+}
+
 export interface IUser {
+  id: IID;
   name: {
     title: ITitle;
     first: string;
@@ -60,7 +71,9 @@ export interface IUser {
   phone: string;
   cell: string;
   nat: INationality;
-  id: IID;
+  picture: IPicture;
+  login: ILogin;
+  location: ILocation;
 }
 
 export interface IAPIResult {
