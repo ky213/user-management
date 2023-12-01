@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { api } from "src/data/api";
 import type { IRootState } from "..";
@@ -11,7 +11,11 @@ type IUsersState = {
 const slice = createSlice({
   name: "users",
   initialState: { list: [] } as IUsersState,
-  reducers: {},
+  reducers: {
+    createUser: (state, { payload }: PayloadAction<IUser>) => {
+      state.list.unshift(payload);
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(api.endpoints.getUsers.matchFulfilled, (state, { payload }) => {
       state.list = payload.results;
@@ -21,4 +25,4 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const selectUsersList = (state: IRootState) => state.users.list;
+export const { createUser } = slice.actions;

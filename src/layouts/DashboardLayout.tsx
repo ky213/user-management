@@ -12,6 +12,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
+import AddIcon from "@mui/icons-material/Add";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
@@ -50,6 +51,14 @@ export default function DashboardLayout() {
                   <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Dashboard"} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding onClick={() => goTo("/dashboard/new-user")}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Create User"} />
               </ListItemButton>
             </ListItem>
           </List>
