@@ -29,9 +29,9 @@ const UserProfile = () => {
     <Box width={"70%"} m={"auto"} pt={10}>
       <Card>
         <CardHeader
-          title={`${user?.name.first} ${user?.name.last}`}
+          title={`${user?.name?.first} ${user?.name?.last}`}
           subheader={user?.email}
-          avatar={<Avatar alt={`${user?.name.first} ${user?.name.last}`} src={user?.picture.large} />}
+          avatar={<Avatar alt={`${user?.name?.first} ${user?.name?.last}`} src={user?.picture?.large} />}
           sx={{ zoom: 2 }}
         />
         <CardContent sx={{ zoom: 1.2 }}>
@@ -52,7 +52,7 @@ const UserProfile = () => {
                       <CakeIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="Age" secondary={user?.dob.age} />
+                  <ListItemText primary="Age" secondary={user?.dob?.age} />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -70,7 +70,7 @@ const UserProfile = () => {
                       <LocationIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="From" secondary={`${user?.location.city}, ${user?.location.state} `} />
+                  <ListItemText primary="From" secondary={`${user?.location?.city}, ${user?.location?.state} `} />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -78,7 +78,7 @@ const UserProfile = () => {
                       <TimezoneIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="Timezone" secondary={`${user?.location?.timezone.offset}`} />
+                  <ListItemText primary="Timezone" secondary={`${user?.location?.timezone?.offset}`} />
                 </ListItem>
               </List>
             </Grid>
