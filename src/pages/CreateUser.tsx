@@ -49,10 +49,7 @@ const CreateUserPage = () => {
   };
 
   useEffect(() => {
-    if (!loading && success)
-      setTimeout(() => {
-        gotTo("/dashboard");
-      }, 2000);
+    if (!loading && success) gotTo("/dashboard");
   }, [loading, success]);
 
   return (

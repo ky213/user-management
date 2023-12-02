@@ -4,6 +4,7 @@ import type { PreloadedState } from "@reduxjs/toolkit";
 
 import { api } from "../api";
 import usersReducer from "./reducers/users";
+import { notificationMiddleware } from "./middlewares/notification";
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
@@ -13,7 +14,7 @@ const rootReducer = combineReducers({
 export const setupStore = (preloadedState?: PreloadedState<IRootState>) => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware, notificationMiddleware),
     preloadedState,
   });
 };
