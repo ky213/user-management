@@ -65,15 +65,6 @@ const CreateUserPage = () => {
           alignItems: "center",
         }}
       >
-        <Snackbar
-          open={!loading && success}
-          autoHideDuration={6000}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        >
-          <Alert severity="success" sx={{ width: "100%" }}>
-            User created Sucessfully
-          </Alert>
-        </Snackbar>
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlined />
         </Avatar>

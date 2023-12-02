@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { enqueueSnackbar } from "notistack";
 
 import { api } from "src/data/api";
 import type { IRootState } from "..";
@@ -34,14 +35,19 @@ const slice = createSlice({
       state.success = true;
       state.error = null;
       state.list.unshift(action.payload);
+      enqueueSnackbar("User created", { variant: "success" });
     });
     builder.addCase(createUser.rejected, (state, action) => {
       state.loading = false;
       state.success = false;
       state.error = action.error.message || "unknown error.";
+      enqueueSnackbar(action.error.message, { variant: "error" });
     });
     builder.addMatcher(api.endpoints.getUsers.matchFulfilled, (state, { payload }) => {
       state.list.push(...payload.results);
+    });
+    builder.addMatcher(api.endpoints.getUsers.matchRejected, (state, { payload, error }) => {
+      enqueueSnackbar("Error: " + error.message, { variant: "error" });
     });
   },
 });

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
+import { SnackbarProvider } from "notistack";
 
 import "./index.css";
 import App from "./App";
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <Provider store={setupStore()}>
       <CssBaseline />
-      <App />
+      <SnackbarProvider>
+        <App />
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>
 );
