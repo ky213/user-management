@@ -1,19 +1,14 @@
 import * as React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
 export default function DashboardLayout() {
@@ -21,36 +16,21 @@ export default function DashboardLayout() {
   const goTo = useNavigate();
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: 200,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: 200, boxSizing: "border-box" },
-        }}
-        open={open}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={() => setOpen(!open)}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-        <Divider />
-        <Box sx={{ overflow: "auto" }}>
+    <Grid container justifyContent={"flex-start"} sx={{ height: "100vh" }}>
+      <Grid item xs={2} md={1} sx={{ height: "100%", borderRight: "1px solid lightgray" }}>
+        <Box mt={8}>
           <List>
+            {/* <ListItem disablePadding>
+              <ListItemButton>
+                <MenuIcon />
+              </ListItemButton>
+            </ListItem> */}
             <ListItem disablePadding onClick={() => goTo("/dashboard")}>
               <ListItemButton>
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Dashboard"} />
+                <ListItemText primary={"Dashboard"} sx={{ display: { xs: "none", md: "block" } }} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding onClick={() => goTo("/dashboard/new-user")}>
@@ -58,15 +38,17 @@ export default function DashboardLayout() {
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Create User"} />
+                <ListItemText primary={"Add User"} sx={{ display: { xs: "none", md: "block" } }} />
               </ListItemButton>
             </ListItem>
           </List>
         </Box>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Outlet />
-      </Box>
-    </Box>
+      </Grid>
+      <Grid item component="main" xs={10} md={11}>
+        <Box justifyContent={"center"} alignItems={"Center"}>
+          <Outlet />
+        </Box>
+      </Grid>
+    </Grid>
   );
 }

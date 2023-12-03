@@ -26,13 +26,13 @@ const UserProfile = () => {
   const user = users.find((user) => user.id.value === id);
 
   return (
-    <Box width={"70%"} m={"auto"} pt={10}>
+    <Box width={"90%"} mx={"auto"} pt={10}>
       <Card>
         <CardHeader
           title={`${user?.name?.first} ${user?.name?.last}`}
           subheader={user?.email}
           avatar={<Avatar alt={`${user?.name?.first} ${user?.name?.last}`} src={user?.picture?.large} />}
-          sx={{ zoom: 2 }}
+          sx={{ zoom: { xs: 1.2, sm: 2 }, display: "flex", flexDirection: { xs: "column", sm: "row" } }}
         />
         <CardContent sx={{ zoom: 1.2 }}>
           <Grid container justifyContent={"center"}>

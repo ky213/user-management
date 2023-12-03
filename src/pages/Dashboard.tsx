@@ -60,7 +60,7 @@ const Dashboard = (props: IDashboardProps) => {
   };
 
   return (
-    <Box mt={10}>
+    <Box mt={10} mx={1} overflow={"auto"}>
       <DataGrid
         rows={users}
         columns={columns}
