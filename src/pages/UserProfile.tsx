@@ -23,7 +23,7 @@ import { IRootState } from "src/data/store";
 const UserProfile = () => {
   const { id } = useParams();
   const users = useSelector((state: IRootState) => state.users.list);
-  const user = users.find((user) => user.id.value == id);
+  const user = users.find((user) => user.id.value === id);
 
   return (
     <Box width={"70%"} m={"auto"} pt={10}>

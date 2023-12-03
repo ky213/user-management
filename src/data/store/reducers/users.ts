@@ -20,10 +20,18 @@ export const createUser = createAsyncThunk<IUser, IUser>("users/createUser", asy
   });
 });
 
+const initialState: IUsersState = { list: [], loading: false, success: false, error: null };
+
 const slice = createSlice({
   name: "users",
-  initialState: { list: [], loading: false, success: false, error: null } as IUsersState,
-  reducers: {},
+  initialState,
+  reducers: {
+    resetUsers: (state) => {
+      state.loading = false;
+      state.success = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createUser.pending, (state, action) => {
       state.loading = true;
@@ -46,3 +54,5 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+
+export const { resetUsers } = slice.actions;

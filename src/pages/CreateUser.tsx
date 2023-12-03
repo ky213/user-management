@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 
 import { IUser } from "src/data/types";
-import { createUser } from "src/data/store/reducers/users";
+import { createUser, resetUsers } from "src/data/store/reducers/users";
 import { EMAIL_REG_EXR, NATIONALITIES, PHONE_REG_EXR } from "src/config/constants";
 import { IRootState, useAppDispatch, useAppSelector } from "src/data/store";
 
@@ -50,6 +50,10 @@ const CreateUserPage = () => {
 
   useEffect(() => {
     if (!loading && success) gotTo("/dashboard");
+
+    return () => {
+      dispatch(resetUsers());
+    };
   }, [loading, success]);
 
   return (
