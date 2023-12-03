@@ -137,7 +137,9 @@ const CreateUserPage = () => {
               <InputLabel id="nat-label">Nationality</InputLabel>
               <Select id="nat" labelId="nat-label" fullWidth {...registerField("nat", { required: true })}>
                 {NATIONALITIES.map((nat) => (
-                  <MenuItem value={nat}>{nat}</MenuItem>
+                  <MenuItem key={nat} value={nat}>
+                    {nat}
+                  </MenuItem>
                 ))}
               </Select>
               {Boolean(fieldErrors.nat) && <FormHelperText color={"danger"}>Must select a gender</FormHelperText>}
