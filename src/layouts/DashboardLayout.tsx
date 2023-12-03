@@ -9,22 +9,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
 
 export default function DashboardLayout() {
-  const [open, setOpen] = useState(false);
   const goTo = useNavigate();
 
   return (
     <Grid container justifyContent={"flex-start"} sx={{ height: "100vh" }}>
-      <Grid item xs={2} md={1} sx={{ height: "100%", borderRight: "1px solid lightgray" }}>
+      <Grid item xs={2} sx={{ height: "100%", borderRight: "1px solid lightgray" }}>
         <Box mt={8}>
           <List>
-            {/* <ListItem disablePadding>
-              <ListItemButton>
-                <MenuIcon />
-              </ListItemButton>
-            </ListItem> */}
             <ListItem disablePadding onClick={() => goTo("/dashboard")}>
               <ListItemButton>
                 <ListItemIcon>
@@ -44,7 +37,7 @@ export default function DashboardLayout() {
           </List>
         </Box>
       </Grid>
-      <Grid item component="main" xs={10} md={11}>
+      <Grid item component="main" xs={10}>
         <Box justifyContent={"center"} alignItems={"Center"}>
           <Outlet />
         </Box>
